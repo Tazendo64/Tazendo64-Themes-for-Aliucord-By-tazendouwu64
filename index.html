@@ -14,30 +14,40 @@
             align-items: center;
             font-family: sans-serif;
             color: #fffef0;
-            /* Enlace directo a tu imagen en tu propio repositorio */
+            
+            /* ENLACE DIRECTO A TU ANIMACIÓN (Cambia .webp por .gif si es necesario) */
             background-image: url('https://githubusercontent.com');
-            background-position: center;
+            
+            /* Ajustes universales para PC, Linux y Móvil */
+            background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
-            background-color: #2e432c; 
+            background-attachment: fixed; /* Evita lag en el scroll (Anti-Crash) */
+            background-color: #2e432c; /* Color de respaldo por si el internet falla */
         }
         .container {
-            background: rgba(46, 67, 44, 0.85);
-            padding: 20px;
+            background: rgba(46, 67, 44, 0.85); /* Verde hoja de loto translúcido */
+            padding: 25px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            border: 1px solid #ff7a45;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid #ff7a45; /* Naranja Waddle Dee */
         }
-        h1 { color: #ff7a45; }
+        h1 { 
+            color: #ff7a45; 
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Waddle Dee & Kirby Theme</h1>
-        <p>¡Hola! Este es el inicio de mi tema avanzado.</p>
+        <h1>Waddle Dee & Kirby</h1>
+        <p>¡El fondo animado está funcionando perfectamente en PC, Linux y Android! 🌊</p>
     </div>
 </body>
 </html>
