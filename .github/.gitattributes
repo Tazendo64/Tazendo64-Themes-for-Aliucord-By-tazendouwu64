@@ -1,1 +1,6 @@
-
+# Asegura que los archivos multimedia se traten siempre como binarios puros (Evita corrupción y crash)
+*.mp3 binary
+*.ttf binary
+*.webp binary
+*.gif binary
+*.png binary
