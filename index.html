@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waddle Dee & Kirby Theme Preview</title>
     <style>
-        /* --- PALETA DE COLORES PERSONALIZADA (Inspirada en tu ilustración) --- */
+        /* --- FUENTE DE TEXTO PERSONALIZADA (ANTI-LAG) --- */
+        @font-face {
+            font-family: 'WaddleFont';
+            /* Enlace Raw directo a tu archivo .ttf en GitHub */
+            src: url('https://githubusercontent.com') format('truetype');
+            font-display: swap; /* Muestra una fuente del sistema mientras carga (Evita bloqueos/crasheos) */
+        }
+
+        /* --- PALETA DE COLORES PERSONALIZADA --- */
         :root {
-            --bg-principal: #2e432c;      /* Verde hoja de loto oscuro */
-            --bg-paneles: rgba(29, 43, 28, 0.85); /* Verde translúcido anti-lag */
-            --acento: #ff7a45;          /* Naranja Waddle Dee */
-            --texto-claro: #fffef0;     /* Crema sombrilla */
-            --texto-muted: #9bb88d;     /* Verde claro apagado */
+            --bg-principal: #2e432c;      
+            --bg-paneles: rgba(29, 43, 28, 0.85); 
+            --acento: #ff7a45;          
+            --texto-claro: #fffef0;     
+            --texto-muted: #9bb88d;     
         }
 
         body {
@@ -26,46 +34,19 @@
             overflow: hidden;
             background-color: var(--bg-principal);
             
-            /* --- FONDO ANIMADO --- */
+            /* FONDO ANIMADO */
             background-image: url('https://githubusercontent.com');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
             
-            /* --- SISTEMA ANTI-CRASHEO ACELERACIÓN GPU --- */
+            /* SISTEMA ANTI-CRASHEO ACELERACIÓN GPU */
             transform: translate3d(0, 0, 0);
             will-change: transform;
         }
 
-        /* --- PANTALLA DE STARTUP (Carga obligatoria para el audio) --- */
-        #startup-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #111;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .btn-start {
-            background: var(--acento);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 122, 69, 0.5);
-            transition: transform 0.2s;
-        }
-        .btn-start:hover { transform: scale(1.05); }
-
-        /* --- PANEL PRINCIPAL --- */
+        /* PANEL PRINCIPAL */
         .container {
             background: var(--bg-paneles);
             padding: 30px;
@@ -78,16 +59,23 @@
             backdrop-filter: blur(8px);
         }
 
-        h1 { color: var(--acento); margin-top: 0; font-size: 1.8rem; }
+        h1 { 
+            font-family: 'WaddleFont', sans-serif; /* Aplicamos tu hermosa fuente aquí */
+            color: var(--acento); 
+            margin-top: 0; 
+            font-size: 2.8rem; /* Un poco más grande para que luzca la caligrafía */
+            letter-spacing: 1px;
+        }
+
         p { color: var(--texto-claro); line-height: 1.6; }
         
         .btn-action {
+            font-family: 'WaddleFont', sans-serif; /* También en los botones para dar estilo */
             background-color: var(--acento);
             color: var(--texto-claro);
             border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: bold;
+            padding: 10px 24px;
+            font-size: 1.3rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -96,43 +84,57 @@
         }
         .btn-action:hover { transform: scale(1.05); }
         .btn-action:active { transform: scale(0.95); }
+
+        /* PANTALLA DE STARTUP */
+        #startup-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #111;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
 <body>
 
-    <!-- PANTALLA DE INICIO (STARTUP) -->
     <div id="startup-screen">
-        <button class="btn-start" onclick="iniciarProyecto()">START GAME</button>
+        <button class="btn-action" onclick="iniciarProyecto()">START GAME</button>
     </div>
 
     <div class="container">
         <h1>Waddle Dee & Kirby</h1>
-        <p>Paleta de colores, sonidos interactivos y sistema anti-crasheo web activos. 🌊</p>
-        <button class="btn-action" onclick="reproducirClic()">Enviar Msg (Sonido)</button>
+        <p>Paleta, sonidos, tipografía caligráfica y escudo anti-crasheo listos de manera avanzada. 🌊</p>
+        <button class="btn-action" onclick="reproducirClic()">Enviar Msg</button>
         <button class="btn-action" onclick="toggleMusica()">Música On/Off</button>
     </div>
 
-    <!-- --- CONTROL DE AUDIO ASÍNCRONO (ANTI-LAG) --- -->
     <script>
-        // Enlaces directos a tus archivos multimedia reales del repositorio
         const audioStartup = new Audio('https://githubusercontent.com');
         const audioClic = new Audio('https://githubusercontent.com');
         const audioFondo = new Audio('https://githubusercontent.com');
         
         audioFondo.loop = true;
-        audioFondo.volume = 0.4; // Nivel moderado para estabilidad del búfer de audio
+        audioFondo.volume = 0.4;
 
         function iniciarProyecto() {
             audioStartup.play();
             document.getElementById('startup-screen').style.opacity = 0;
             setTimeout(() => {
                 document.getElementById('startup-screen').style.display = 'none';
-                audioFondo.play().catch(e => console.log("Música en espera:", e));
+                audioFondo.play().catch(e => console.log("Música diferida:", e));
             }, 500);
         }
 
+        document.fonts.ready.then(() => {
+            console.log("Fuente caligráfica cargada de forma segura (Anti-Crash)");
+        });
+
         function reproducirClic() {
-            audioClic.currentTime = 0; // Frena el sonido previo si se hace clic rápido (Evita el lag masivo)
+            audioClic.currentTime = 0; 
             audioClic.play();
         }
 
