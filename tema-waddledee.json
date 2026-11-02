@@ -1,0 +1,13 @@
+{
+  "name": "Waddle Dee Animated Pond",
+  "author": "Tazendo64",
+  "version": "1.0.0",
+  "background_url": "https://githubusercontent.com",
+  "simple_colors": {
+    "background": "#2e432c",
+    "background_secondary": "#1d2b1c",
+    "accent": "#ff7a45",
+    "text": "#fffef0",
+    "text_muted": "#9bb88d"
+  }
+}
