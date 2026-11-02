@@ -8,18 +8,17 @@
         /* --- FUENTE DE TEXTO PERSONALIZADA (ANTI-LAG) --- */
         @font-face {
             font-family: 'WaddleFont';
-            /* Enlace Raw directo a tu archivo .ttf en GitHub */
             src: url('https://githubusercontent.com') format('truetype');
-            font-display: swap; /* Muestra una fuente del sistema mientras carga (Evita bloqueos/crasheos) */
+            font-display: swap;
         }
 
         /* --- PALETA DE COLORES PERSONALIZADA --- */
         :root {
-            --bg-principal: #2e432c;      
-            --bg-paneles: rgba(29, 43, 28, 0.85); 
-            --acento: #ff7a45;          
-            --texto-claro: #fffef0;     
-            --texto-muted: #9bb88d;     
+            --bg-principal: #2e432c;      /* Verde hoja de loto oscuro */
+            --bg-paneles: rgba(29, 43, 28, 0.85); /* Verde translúcido esmerilado */
+            --acento: #ff7a45;          /* Naranja Waddle Dee */
+            --texto-claro: #fffef0;     /* Crema sombrilla */
+            --texto-muted: #9bb88d;     /* Verde claro apagado */
         }
 
         body {
@@ -31,7 +30,7 @@
             align-items: center;
             font-family: system-ui, -apple-system, sans-serif;
             color: var(--texto-claro);
-            overflow: hidden;
+            overflow-x: hidden;
             background-color: var(--bg-principal);
             
             /* FONDO ANIMADO */
@@ -53,24 +52,25 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            max-width: 420px;
+            max-width: 440px;
             width: 90%;
             border: 2px solid var(--acento);
             backdrop-filter: blur(8px);
         }
 
         h1 { 
-            font-family: 'WaddleFont', sans-serif; /* Aplicamos tu hermosa fuente aquí */
+            font-family: 'WaddleFont', sans-serif;
             color: var(--acento); 
             margin-top: 0; 
-            font-size: 2.8rem; /* Un poco más grande para que luzca la caligrafía */
+            font-size: 2.8rem;
             letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        p { color: var(--texto-claro); line-height: 1.6; }
+        p { color: var(--texto-claro); line-height: 1.6; margin-bottom: 20px; }
         
         .btn-action {
-            font-family: 'WaddleFont', sans-serif; /* También en los botones para dar estilo */
+            font-family: 'WaddleFont', sans-serif;
             background-color: var(--acento);
             color: var(--texto-claro);
             border: none;
@@ -84,6 +84,69 @@
         }
         .btn-action:hover { transform: scale(1.05); }
         .btn-action:active { transform: scale(0.95); }
+
+        /* --- PALETA DE COLORES INTERACTIVA --- */
+        .palette-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 25px 0 15px 0;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .color-box {
+            flex: 1;
+            height: 55px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .color-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Pequeño texto indicativo al pasar el mouse */
+        .color-box::after {
+            content: 'Copiar';
+            position: absolute;
+            bottom: -22px;
+            font-size: 0.65rem;
+            background: rgba(0,0,0,0.7);
+            padding: 2px 6px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            color: #fff;
+            font-family: sans-serif;
+        }
+        .color-box:hover::after { opacity: 1; }
+
+        /* --- MENSAJE FLOTANTE DE COPIADO --- */
+        #toast {
+            position: fixed;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff7a45;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: bottom 0.3s ease;
+            z-index: 10000;
+            font-size: 0.9rem;
+        }
 
         /* PANTALLA DE STARTUP */
         #startup-screen {
@@ -105,9 +168,22 @@
         <button class="btn-action" onclick="iniciarProyecto()">START GAME</button>
     </div>
 
+    <!-- Mensaje flotante invisible por defecto -->
+    <div id="toast">¡Color copiado al portapapeles! 🎨</div>
+
     <div class="container">
         <h1>Waddle Dee & Kirby</h1>
-        <p>Paleta, sonidos, tipografía caligráfica y escudo anti-crasheo listos de manera avanzada. 🌊</p>
+        <p>Paleta, sonidos, tipografía caligráfica y escudo anti-crasheo listos. Haz clic en los colores para copiar sus códigos HEX de forma interactiva.</p>
+        
+        <!-- PALETA INTERACTIVA -->
+        <div class="palette-container">
+            <div class="color-box" style="background-color: #2e432c;" onclick="copiarColor('#2e432c')"></div>
+            <div class="color-box" style="background-color: #1d2b1c;" onclick="copiarColor('#1d2b1c')"></div>
+            <div class="color-box" style="background-color: #ff7a45;" onclick="copiarColor('#ff7a45')"></div>
+            <div class="color-box" style="background-color: #fffef0;" onclick="copiarColor('#fffef0')"></div>
+            <div class="color-box" style="background-color: #9bb88d;" onclick="copiarColor('#9bb88d')"></div>
+        </div>
+
         <button class="btn-action" onclick="reproducirClic()">Enviar Msg</button>
         <button class="btn-action" onclick="toggleMusica()">Música On/Off</button>
     </div>
@@ -129,9 +205,23 @@
             }, 500);
         }
 
-        document.fonts.ready.then(() => {
-            console.log("Fuente caligráfica cargada de forma segura (Anti-Crash)");
-        });
+        // FUNCIÓN INTERACTIVA PARA COPIAR COLOR CON EFECTO TOAST (ANTI-LAG)
+        function copiarColor(hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+                const toast = document.getElementById('toast');
+                toast.innerText = `¡Copiado: ${hex}! 🎨`;
+                toast.style.bottom = '30px'; // Sube la notificación animada
+                
+                // Pequeño sonido retro al interactuar con la paleta (reutiliza el clic de forma asíncrona)
+                reproducirClic();
+
+                setTimeout(() => {
+                    toast.style.bottom = '-50px'; // Oculta la notificación después de 2 segundos
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar color: ', err);
+            });
+        }
 
         function reproducirClic() {
             audioClic.currentTime = 0; 
