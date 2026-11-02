@@ -1,6 +1,11 @@
-# Asegura que los archivos multimedia se traten siempre como binarios puros (Evita corrupción y crash)
+# Forzar tratamiento binario puro para evitar corrupción de audio y crasheos de la app
 *.mp3 binary
 *.ttf binary
 *.webp binary
 *.gif binary
 *.png binary
+
+# Asegurar codificación estándar universal para los archivos de configuración
+*.json text eol=lf
+*.css text eol=lf
+*.html text eol=lf
