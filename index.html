@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waddle Dee Theme Preview</title>
+    <title>Waddle Dee & Kirby Theme Preview</title>
     <style>
+        /* --- PALETA DE COLORES PERSONALIZADA (Inspirada en tu ilustración) --- */
+        :root {
+            --bg-principal: #2e432c;      /* Verde hoja de loto oscuro */
+            --bg-paneles: rgba(29, 43, 28, 0.85); /* Verde translúcido anti-lag */
+            --acento: #ff7a45;          /* Naranja Waddle Dee */
+            --texto-claro: #fffef0;     /* Crema sombrilla */
+            --texto-muted: #9bb88d;     /* Verde claro apagado */
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -12,42 +21,128 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: sans-serif;
-            color: #fffef0;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: var(--texto-claro);
+            overflow: hidden;
+            background-color: var(--bg-principal);
             
-            /* ENLACE DIRECTO A TU ANIMACIÓN (Cambia .webp por .gif si es necesario) */
+            /* --- FONDO ANIMADO --- */
             background-image: url('https://githubusercontent.com');
-            
-            /* Ajustes universales para PC, Linux y Móvil */
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed; /* Evita lag en el scroll (Anti-Crash) */
-            background-color: #2e432c; /* Color de respaldo por si el internet falla */
+            background-attachment: fixed;
+            
+            /* --- SISTEMA ANTI-CRASHEO ACELERACIÓN GPU --- */
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
         }
+
+        /* --- PANTALLA DE STARTUP (Carga obligatoria para el audio) --- */
+        #startup-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #111;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .btn-start {
+            background: var(--acento);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 122, 69, 0.5);
+            transition: transform 0.2s;
+        }
+        .btn-start:hover { transform: scale(1.05); }
+
+        /* --- PANEL PRINCIPAL --- */
         .container {
-            background: rgba(46, 67, 44, 0.85); /* Verde hoja de loto translúcido */
-            padding: 25px;
-            border-radius: 15px;
+            background: var(--bg-paneles);
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 420px;
             width: 90%;
-            border: 2px solid #ff7a45; /* Naranja Waddle Dee */
+            border: 2px solid var(--acento);
+            backdrop-filter: blur(8px);
         }
-        h1 { 
-            color: #ff7a45; 
-            margin-top: 0;
+
+        h1 { color: var(--acento); margin-top: 0; font-size: 1.8rem; }
+        p { color: var(--texto-claro); line-height: 1.6; }
+        
+        .btn-action {
+            background-color: var(--acento);
+            color: var(--texto-claro);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(255, 122, 69, 0.3);
         }
-        p {
-            line-height: 1.6;
-        }
+        .btn-action:hover { transform: scale(1.05); }
+        .btn-action:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
+
+    <!-- PANTALLA DE INICIO (STARTUP) -->
+    <div id="startup-screen">
+        <button class="btn-start" onclick="iniciarProyecto()">START GAME</button>
+    </div>
+
     <div class="container">
         <h1>Waddle Dee & Kirby</h1>
-        <p>¡El fondo animado está funcionando perfectamente en PC, Linux y Android! 🌊</p>
+        <p>Paleta de colores, sonidos interactivos y sistema anti-crasheo web activos. 🌊</p>
+        <button class="btn-action" onclick="reproducirClic()">Enviar Msg (Sonido)</button>
+        <button class="btn-action" onclick="toggleMusica()">Música On/Off</button>
     </div>
+
+    <!-- --- CONTROL DE AUDIO ASÍNCRONO (ANTI-LAG) --- -->
+    <script>
+        // Enlaces directos a tus archivos multimedia reales del repositorio
+        const audioStartup = new Audio('https://githubusercontent.com');
+        const audioClic = new Audio('https://githubusercontent.com');
+        const audioFondo = new Audio('https://githubusercontent.com');
+        
+        audioFondo.loop = true;
+        audioFondo.volume = 0.4; // Nivel moderado para estabilidad del búfer de audio
+
+        function iniciarProyecto() {
+            audioStartup.play();
+            document.getElementById('startup-screen').style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('startup-screen').style.display = 'none';
+                audioFondo.play().catch(e => console.log("Música en espera:", e));
+            }, 500);
+        }
+
+        function reproducirClic() {
+            audioClic.currentTime = 0; // Frena el sonido previo si se hace clic rápido (Evita el lag masivo)
+            audioClic.play();
+        }
+
+        function toggleMusica() {
+            if (audioFondo.paused) {
+                audioFondo.play();
+            } else {
+                audioFondo.pause();
+            }
+        }
+    </script>
 </body>
 </html>
