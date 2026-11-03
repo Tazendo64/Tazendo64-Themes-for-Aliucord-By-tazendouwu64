@@ -14,5 +14,5 @@ jobs:
       - name: Validar Sintaxis JSON de Aliucord
         run: |
           echo "Comprobando estabilidad del archivo JSON..."
-          python3 -c "import json; json.load(open('themes/android/tema-waddledee.json'))"
+          python3 -c "import json; json.load(open('Themes/Android/tema-waddledee.json'))"
           echo "¡JSON perfectamente estructurado y seguro para Aliucord!"
