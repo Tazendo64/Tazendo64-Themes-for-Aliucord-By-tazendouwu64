@@ -6,23 +6,20 @@
   },
   "background": {
     "url": "https://raw.githubusercontent.com/Tazendo64/Tazendo64-Themes-for-Aliucord-By-tazendouwu64/waddle_dee/assets/waddledeebackground.webp",
-    "blur": 0,
-    "alpha": 0.7
+    "overlay_alpha": 0,
+    "blur_radius": 0
+  },
+  "simple_colors": {
+    "background": 0,
+    "background_secondary": 0
   },
   "colors": {
-    "background": "#00000000",
-    "background_primary": "#00000000",
-    "background_secondary": "#00000000",
-    "background_tertiary": "#00000000",
-    "background_floating": "#20000000",
-    "brand_new_360": "#ff7a45",
-    "brand_new_500": "#ff7a45",
-    "primary_600": "#2e432c",
-    "primary_700": "#1d2b1c",
-    "primary_800": "#1d2b1c",
-    "text_normal": "#fffef0",
-    "text_muted": "#9bb88d",
-    "header_primary": "#fffef0",
-    "header_secondary": "#9bb88d"
+    "brand_new_360": -34235,
+    "brand_new_500": -34235,
+    "primary_dark_800": 536870912,
+    "text_normal": -272,
+    "text_muted": -6571891,
+    "header_primary": -272,
+    "header_secondary": -6571891
   }
 }

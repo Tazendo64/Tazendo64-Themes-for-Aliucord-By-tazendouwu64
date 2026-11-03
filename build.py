@@ -29,10 +29,45 @@ def validate():
     except (OSError, json.JSONDecodeError) as error:
         fail(f"{theme_path.relative_to(ROOT)}: {error}")
 
-    background_url = theme.get("background", {}).get("url", "")
+    background = theme.get("background", {})
+    if not isinstance(background, dict):
+        fail(f"{theme_path.relative_to(ROOT)}: background must be an object")
+
+    background_url = background.get("url", "")
     parsed_url = urlparse(background_url)
     if parsed_url.scheme != "https" or not parsed_url.netloc:
         fail(f"{theme_path.relative_to(ROOT)}: background URL must use HTTPS")
+
+    overlay_alpha = background.get("overlay_alpha")
+    if type(overlay_alpha) is not int or not 0 <= overlay_alpha <= 255:
+        fail(f"{theme_path.relative_to(ROOT)}: background.overlay_alpha must be an integer from 0 to 255")
+    blur_radius = background.get("blur_radius")
+    if (
+        isinstance(blur_radius, bool)
+        or not isinstance(blur_radius, (int, float))
+        or not 0 <= blur_radius <= 25
+    ):
+        fail(f"{theme_path.relative_to(ROOT)}: background.blur_radius must be from 0 to 25")
+    if "alpha" in background or "blur" in background:
+        fail(f"{theme_path.relative_to(ROOT)}: use Themer's overlay_alpha and blur_radius fields")
+
+    simple_colors = theme.get("simple_colors")
+    if not isinstance(simple_colors, dict) or not {
+        "background",
+        "background_secondary",
+    }.issubset(simple_colors):
+        fail(f"{theme_path.relative_to(ROOT)}: simple_colors must define background and background_secondary")
+
+    for section in ("simple_colors", "colors"):
+        color_values = theme.get(section, {})
+        if not isinstance(color_values, dict):
+            fail(f"{theme_path.relative_to(ROOT)}: {section} must be an object")
+        for color_name, color_value in color_values.items():
+            if type(color_value) is not int or not -(2**31) <= color_value < 2**31:
+                fail(
+                    f"{theme_path.relative_to(ROOT)}: {section}.{color_name} "
+                    "must be a signed 32-bit ARGB integer"
+                )
 
     sources = (
         ROOT / "index.html",

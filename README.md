@@ -38,11 +38,13 @@ Download the package directly: [waddledee-theme-suite.zip](https://github.com/Ta
 1. Install the **Themer** plugin and the **CustomSounds** plugin from the official Aliucord server.
 2. Download the file [`theme-waddledee.json`](./themes/android/theme-waddledee.json) from this repository and move it to the `Aliucord/themes/` folder on your device's storage.
 3. Go to Aliucord Settings > Plugins > Themer, activate the theme, and restart the application.
-4. The background is configured with `alpha: 0.7` for semi-transparency. Adjust the value in the manifest from `0.0` (fully transparent) to `1.0` (fully opaque) as desired.
+4. In Themer settings, enable **Full Transparency** so the wallpaper shows through the interface. The manifest uses Themer's `simple_colors` settings for transparent main and secondary backgrounds; the floating surfaces use a translucent ARGB color. `background.overlay_alpha` controls how much the wallpaper is darkened (0 means no dark overlay), not its transparency.
 5. Open the CustomSounds settings and add the URLs of the audio files located in the `/assets` folder:
    * **Send message:** `waddle_send.wav`
    * **Receive message:** `waddle_receive.mp3`
    * **Call start:** `waddle_call_start.mp3`
+
+The Android manifest follows Themer's current schema: `background.overlay_alpha` and `background.blur_radius` configure the wallpaper, `simple_colors` sets grouped interface colors, and entries in `colors` use signed ARGB integer values.
 
 ## 📑 Note: also you can use the plugin Themes if you want.
 
