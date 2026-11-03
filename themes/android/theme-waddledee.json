@@ -2,7 +2,7 @@
     "manifest": {
         "name": "Waddle Dee Advanced Pond",
         "author": "Tazendo64",
-        "version": "1.2.1"
+        "version": "1.2.2"
     },
     "background": {
         "url": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/1000717963-d5cb93a9.webp",
@@ -29,7 +29,10 @@
         "header_secondary": -6571891
     },
     "fonts": {
-        "*": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf"
+        "ggsans_regular": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf",
+        "ggsans_medium": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf",
+        "ggsans_semibold": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf",
+        "ggsans_bold": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf"
     },
     "raws": {
         "call_calling": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_call_start-735f45c7.mp3",
