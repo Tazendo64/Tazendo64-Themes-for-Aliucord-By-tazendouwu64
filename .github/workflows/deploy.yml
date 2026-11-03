@@ -1,18 +1,36 @@
-name: Waddle Dee Theme Suite Validador
+name: Deploy website to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["waddle_dee"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  validate:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar Repositorio
+      - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Validar Sintaxis JSON de Aliucord
-        run: |
-          echo "Comprobando estabilidad del archivo JSON..."
-          python3 -c "import json; json.load(open('Themes/Android/tema-waddledee.json'))"
-          echo "¡JSON perfectamente estructurado y seguro para Aliucord!"
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
