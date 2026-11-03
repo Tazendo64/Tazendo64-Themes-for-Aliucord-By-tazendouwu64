@@ -1,11 +1,9 @@
-# Forzar tratamiento binario puro para evitar corrupción de audio y crasheos de la app
+# Force Git to treat audio, fonts, and images as pure binaries (prevents buffer corruption)
 *.mp3 binary
 *.ttf binary
 *.webp binary
-*.gif binary
 *.png binary
-
-# Asegurar codificación estándar universal para los archivos de configuración
-*.json text eol=lf
-*.css text eol=lf
-*.html text eol=lf
+...*.png binary
+*.png binary
+*.png binary
+*.png 
