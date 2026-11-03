@@ -5,8 +5,6 @@
 ![Supported Platforms](https://shields.io)
 ![License](https://shields.io)
 
----
-
 ## ✨ Special Features
 
 * **🌊 Fluid Motion Background:** Ultra-lightweight WebP file that simulates water movement and Kirby's reflection without overloading your device's RAM.
@@ -17,13 +15,11 @@
 
 * **🛡️ Anti-Crash System:** Styles optimized using hardware acceleration (GPU) and asynchronous audio buffers to prevent freezes on any platform.
 
----
-
 ## 🎨 Official Color Palette
 
-| Element | HEX Code | Representative Color |
+| Element | HEX Code | Representative Color 
 
-| :--- | :---: | :--- |
+
 
 | **Main Background** | `#2e432c` | Dark Lotus Leaf Green |
 
@@ -34,8 +30,6 @@
 | **Interface Text** | `#fffef0` | Umbrella Cream |
 
 **Secondary Text** | `#9bb88d` | Soft Moss Green |
-
----
 
 ## 🚀 Installation Guide
 
@@ -57,7 +51,6 @@
 
 4. Enjoy the animated background and frosted transparency!
 
----
 
 ## 📂 Repository Structure
 
@@ -75,9 +68,8 @@ Tazendo64-Themes-for-Aliucord-By-tazendouwu64/
 └── pc-linux/
 
 └── waddledee-pc.theme.css
-```
 
----
+
 _Created with 🧡 by [Tazendo64](https://github.com). If you have optimization ideas for the anti-crash system, feel free to open an Issue or Pull Request!_
 
  
