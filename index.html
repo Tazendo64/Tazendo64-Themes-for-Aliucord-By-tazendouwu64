@@ -8,6 +8,7 @@
         /* --- FUENTE DE TEXTO PERSONALIZADA (ANTI-LAG) --- */
         @font-face {
             font-family: 'WaddleFont';
+            /* Enlace RAW directo a tu tipografía en el repositorio */
             src: url('https://githubusercontent.com') format('truetype');
             font-display: swap;
         }
@@ -33,7 +34,7 @@
             overflow-x: hidden;
             background-color: var(--bg-principal);
             
-            /* FONDO ANIMADO */
+            /* FONDO ANIMADO - Usando la ruta RAW correcta */
             background-image: url('https://githubusercontent.com');
             background-position: center center;
             background-repeat: no-repeat;
@@ -189,6 +190,7 @@
     </div>
 
     <script>
+        /* --- RUTAS RAW DE AUDIO DE TU CARPETA /ASSETS --- */
         const audioStartup = new Audio('https://githubusercontent.com');
         const audioClic = new Audio('https://githubusercontent.com');
         const audioFondo = new Audio('https://githubusercontent.com');
@@ -197,26 +199,25 @@
         audioFondo.volume = 0.4;
 
         function iniciarProyecto() {
-            audioStartup.play();
+            audioStartup.play().catch(e => console.log("Error al reproducir audio de inicio:", e));
             document.getElementById('startup-screen').style.opacity = 0;
             setTimeout(() => {
                 document.getElementById('startup-screen').style.display = 'none';
-                audioFondo.play().catch(e => console.log("Música diferida:", e));
+                audioFondo.play().catch(e => console.log("Música diferida (interacción requerida):", e));
             }, 500);
         }
 
-        // FUNCIÓN INTERACTIVA PARA COPIAR COLOR CON EFECTO TOAST (ANTI-LAG)
+        // FUNCIÓN INTERACTIVA PARA COPIAR COLOR CON EFECTO TOAST
         function copiarColor(hex) {
             navigator.clipboard.writeText(hex).then(() => {
                 const toast = document.getElementById('toast');
                 toast.innerText = `¡Copiado: ${hex}! 🎨`;
-                toast.style.bottom = '30px'; // Sube la notificación animada
+                toast.style.bottom = '30px'; 
                 
-                // Pequeño sonido retro al interactuar con la paleta (reutiliza el clic de forma asíncrona)
                 reproducirClic();
 
                 setTimeout(() => {
-                    toast.style.bottom = '-50px'; // Oculta la notificación después de 2 segundos
+                    toast.style.bottom = '-50px'; 
                 }, 2000);
             }).catch(err => {
                 console.error('Error al copiar color: ', err);
@@ -225,12 +226,13 @@
 
         function reproducirClic() {
             audioClic.currentTime = 0; 
-            audioClic.play();
+            audioClic.play().catch(e => console.log("Interacción previa requerida para reproducir audio:", e));
         }
 
+        /* --- CORRECCIÓN DE LA FUNCIÓN INTERRUPTORA DE MÚSICA --- */
         function toggleMusica() {
             if (audioFondo.paused) {
-                audioFondo.play();
+                audioFondo.play().catch(e => console.log("Error al activar música:", e));
             } else {
                 audioFondo.pause();
             }
