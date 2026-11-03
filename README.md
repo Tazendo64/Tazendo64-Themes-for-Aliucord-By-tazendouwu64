@@ -20,7 +20,7 @@ Run `python3 build.py` to validate the Android theme JSON and local web assets, 
 * `build/site/` — the ready-to-publish website.
 * `build/waddledee-theme-suite.zip` — the website, themes, assets, license, and README.
 
-The GitHub Actions workflow runs the same build before deploying Pages and makes the ZIP available as a workflow artifact.
+Download the package directly: [waddledee-theme-suite.zip](https://github.com/Tazendo64/Tazendo64-Themes-for-Aliucord-By-tazendouwu64/releases/download/v1.2.0/waddledee-theme-suite.zip).
 
 ## 🎨 Official Color Palette
 
