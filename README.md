@@ -7,7 +7,7 @@
 
 ---
 
-## ✨ Special Features
+## ✨Special Features
 
 * **🌊 Fluid Motion Background:** Ultra-lightweight WebP file (`waddledeebackground.webp`) that simulates water movement and Kirby's reflection without overloading your device's RAM.
 * **🎵 Integrated Interactive Audio:** Sound effects from the Kirby universe assigned to key actions (sending/receiving messages, calls, and startup sounds).
@@ -16,7 +16,7 @@
 
 ## 🎨 Official Color Palette
 
-| Element | HEX Code | Representative Color |
+| Item | HEXCode | Representative Color |
 | :--- | :---: | :--- |
 | **Main Background** | `#2e432c` | Dark Lotus Leaf Green |
 | **Panels & Interface** | `#1d2b1c` | Frosted Translucent Green |
@@ -38,27 +38,27 @@
 ### 💻 On PC and Linux (Vencord / BetterDiscord)
 1. Open your custom Discord client on your computer.
 2. Go to the **Custom Themes (Custom CSS)** section in your settings.
-3. Copy the code from [`waddledee-pc.theme.css`](./themes/pc-linux/waddledee-pc.theme.css) or directly link to the file e importarlo.
+3. Copy the code from [`waddledee-pc.theme.css`](./themes/pc-linux/waddledee-pc.theme.css) or directly link to the file and import it.
 4. Enjoy the animated background and frosted transparency!
 
 ## 📂 Repository Structure
 
 ```text
 Tazendo64-Themes-for-Aliucord-By-tazendouwu64/
-├── .gitattributes          # Prevents corruption of audio and fonts
-├── assets/                 # WebP animation, .ttf font, and audio tracks
-│   ├── waddle_font.ttf
-│   ├── waddledeebackground.webp
-│   ├── waddle_send.mp3
-│   ├── waddle_receive.mp3
-│   ├── waddle_call_start.mp3
-│   └── waddle_ringtone.mp3
-├── index.html              # Preview webpage with interactive sound
-├── LICENSE                 # GPL-3.0 license for your project
-├── README.md               # Your cover page (This file)
-└── themes/                 # Folder containing the themes
+├── .gitattributes # Prevents corruption of audio and fonts
+├── assets/ # WebP animation, .ttf font, and audio tracks
+│ ├── waddle_font.ttf
+│ ├── waddledeebackground.webp
+│ ├── waddle_send.mp3
+│ ├── waddle_receive.mp3
+│ ├── waddle_call_start.mp3
+│ └── waddle_ringtone.mp3
+├── index.html # Preview webpage with interactive sound
+├── LICENSE # GPL-3.0 license for your project
+├── README.md # Your cover page (This file)
+└── themes/ # Folder containing the themes
     ├── android/
-    │   └── tema-waddledee.json
+    │ └── theme-waddledee.json
     └── pc-linux/
         └── waddledee-pc.theme.css
 ```
@@ -66,3 +66,4 @@ Tazendo64-Themes-for-Aliucord-By-tazendouwu64/
 ---
 
 _Created with 🧡 by [Tazendo64](https://github.com). If you have optimization ideas for the anti-crash system, feel free to open an Issue or Pull Request!_
+ 
