@@ -8,7 +8,6 @@
         /* --- FUENTE DE TEXTO PERSONALIZADA (ANTI-LAG) --- */
         @font-face {
             font-family: 'WaddleFont';
-            /* Enlace RAW directo a tu tipografía en el repositorio */
             src: url('https://githubusercontent.com') format('truetype');
             font-display: swap;
         }
@@ -18,7 +17,7 @@
             --bg-principal: #2e432c;      /* Verde hoja de loto oscuro */
             --bg-paneles: rgba(29, 43, 28, 0.85); /* Verde translúcido esmerilado */
             --acento: #ff7a45;          /* Naranja Waddle Dee */
-            --texto-claro: #fffef0;     /* Crema sombrilla */
+            --texto-claro: #fffef0;     /* Cream sombrilla */
             --texto-muted: #9bb88d;     /* Verde claro apagado */
         }
 
@@ -34,7 +33,7 @@
             overflow-x: hidden;
             background-color: var(--bg-principal);
             
-            /* FONDO ANIMADO - Usando la ruta RAW correcta */
+            /* FONDO ANIMADO REAL */
             background-image: url('https://githubusercontent.com');
             background-position: center center;
             background-repeat: no-repeat;
@@ -115,7 +114,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
-        /* Pequeño texto indicativo al pasar el mouse */
         .color-box::after {
             content: 'Copiar';
             position: absolute;
@@ -169,14 +167,12 @@
         <button class="btn-action" onclick="iniciarProyecto()">START GAME</button>
     </div>
 
-    <!-- Mensaje flotante invisible por defecto -->
     <div id="toast">¡Color copiado al portapapeles! 🎨</div>
 
     <div class="container">
         <h1>Waddle Dee & Kirby</h1>
         <p>Paleta, sonidos, tipografía caligráfica y escudo anti-crasheo listos. Haz clic en los colores para copiar sus códigos HEX de forma interactiva.</p>
         
-        <!-- PALETA INTERACTIVA -->
         <div class="palette-container">
             <div class="color-box" style="background-color: #2e432c;" onclick="copiarColor('#2e432c')"></div>
             <div class="color-box" style="background-color: #1d2b1c;" onclick="copiarColor('#1d2b1c')"></div>
@@ -190,7 +186,7 @@
     </div>
 
     <script>
-        /* --- RUTAS RAW DE AUDIO DE TU CARPETA /ASSETS --- */
+        /* --- RUTAS REALES DE AUDIO --- */
         const audioStartup = new Audio('https://githubusercontent.com');
         const audioClic = new Audio('https://githubusercontent.com');
         const audioFondo = new Audio('https://githubusercontent.com');
@@ -199,15 +195,14 @@
         audioFondo.volume = 0.4;
 
         function iniciarProyecto() {
-            audioStartup.play().catch(e => console.log("Error al reproducir audio de inicio:", e));
+            audioStartup.play().catch(e => console.log("Audio de inicio diferido:", e));
             document.getElementById('startup-screen').style.opacity = 0;
             setTimeout(() => {
                 document.getElementById('startup-screen').style.display = 'none';
-                audioFondo.play().catch(e => console.log("Música diferida (interacción requerida):", e));
+                audioFondo.play().catch(e => console.log("Música de fondo diferida:", e));
             }, 500);
         }
 
-        // FUNCIÓN INTERACTIVA PARA COPIAR COLOR CON EFECTO TOAST
         function copiarColor(hex) {
             navigator.clipboard.writeText(hex).then(() => {
                 const toast = document.getElementById('toast');
@@ -226,10 +221,9 @@
 
         function reproducirClic() {
             audioClic.currentTime = 0; 
-            audioClic.play().catch(e => console.log("Interacción previa requerida para reproducir audio:", e));
+            audioClic.play().catch(e => console.log("Interacción requerida para audio de clic:", e));
         }
 
-        /* --- CORRECCIÓN DE LA FUNCIÓN INTERRUPTORA DE MÚSICA --- */
         function toggleMusica() {
             if (audioFondo.paused) {
                 audioFondo.play().catch(e => console.log("Error al activar música:", e));
