@@ -1,14 +1,23 @@
 {
-  "name": "Waddle Dee Advanced Pond",
-  "author": "Tazendo64",
-  "version": "1.2.0",
-  "background_url": "https://githubusercontent.com",
-  "font": "https://githubusercontent.com",
-  "simple_colors": {
-    "background": "#2e432c",
-    "background_secondary": "#1d2b1c",
-    "accent": "#ff7a45",
-    "text": "#fffef0",
-    "text_muted": "#9bb88d"
+  "manifest": {
+    "name": "Waddle Dee Advanced Pond",
+    "author": "Tazendo64",
+    "version": "1.2.0"
+  },
+  "background": {
+    "url": "https://githubusercontent.com",
+    "blur": 0,
+    "alpha": 1.0
+  },
+  "colors": {
+    "brand_new_360": "#ff7a45",
+    "brand_new_500": "#ff7a45",
+    "primary_600": "#2e432c",
+    "primary_700": "#1d2b1c",
+    "primary_800": "#1d2b1c",
+    "text_normal": "#fffef0",
+    "text_muted": "#9bb88d",
+    "header_primary": "#fffef0",
+    "header_secondary": "#9bb88d"
   }
 }
