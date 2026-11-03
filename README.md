@@ -75,3 +75,7 @@ To experience the full potential of this theme suite, we highly recommend instal
 * **CustomSounds:** Essential for binding your `.mp3` assets to system alerts (messages, calls, startup).
 * **FontAndFont:** Used to apply the custom calligraphic typography `waddle_font.ttf` across the entire application interface.
 * **BiggerUserPopouts:** Enhances the frosted glass effect preview on user profiles and cards.
+
+## 🌐 Live Preview
+
+Open the [Waddle Dee theme preview](https://tazendo64.github.io/Tazendo64-Themes-for-Aliucord-By-tazendouwu64/).
