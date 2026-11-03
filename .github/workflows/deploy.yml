@@ -1,0 +1,18 @@
+name: Waddle Dee Theme Suite Validador
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar Repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar Sintaxis JSON de Aliucord
+        run: |
+          echo "Comprobando estabilidad del archivo JSON..."
+          python3 -c "import json; json.load(open('themes/android/tema-waddledee.json'))"
+          echo "¡JSON perfectamente estructurado y seguro para Aliucord!"
