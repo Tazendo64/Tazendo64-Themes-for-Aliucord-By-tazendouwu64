@@ -38,7 +38,8 @@ Download the package directly: [waddledee-theme-suite.zip](https://github.com/Ta
 1. Install the **Themer** plugin and the **CustomSounds** plugin from the official Aliucord server.
 2. Download the file [`theme-waddledee.json`](./themes/android/theme-waddledee.json) from this repository and move it to the `Aliucord/themes/` folder on your device's storage.
 3. Go to Aliucord Settings > Plugins > Themer, activate the theme, and restart the application.
-4. Open the CustomSounds settings and add the URLs of the audio files located in the `/assets` folder:
+4. The background is configured with `alpha: 0.7` for semi-transparency. Adjust the value in the manifest from `0.0` (fully transparent) to `1.0` (fully opaque) as desired.
+5. Open the CustomSounds settings and add the URLs of the audio files located in the `/assets` folder:
    * **Send message:** `waddle_send.wav`
    * **Receive message:** `waddle_receive.mp3`
    * **Call start:** `waddle_call_start.mp3`
