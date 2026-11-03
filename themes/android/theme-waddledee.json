@@ -10,6 +10,11 @@
     "alpha": 0.7
   },
   "colors": {
+    "background": "#00000000",
+    "background_primary": "#00000000",
+    "background_secondary": "#00000000",
+    "background_tertiary": "#00000000",
+    "background_floating": "#20000000",
     "brand_new_360": "#ff7a45",
     "brand_new_500": "#ff7a45",
     "primary_600": "#2e432c",
