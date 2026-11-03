@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waddle Dee & Kirby Theme Preview</title>
     <style>
-        /* --- FUENTE DE TEXTO PERSONALIZADA (ANTI-LAG) --- */
+        * { box-sizing: border-box; }
+
+        /* --- FUENTE DE TEXTO PERSONALIZADA --- */
         @font-face {
             font-family: 'WaddleFont';
-            src: url('https://githubusercontent.com') format('truetype');
+            src: url('assets/waddle_font.ttf') format('truetype');
             font-display: swap;
         }
 
@@ -33,16 +35,15 @@
             overflow-x: hidden;
             background-color: var(--bg-principal);
             
-            /* FONDO ANIMADO REAL */
-            background-image: url('https://githubusercontent.com');
+            background-image: url('assets/waddle_background.png');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
-            
-            /* SISTEMA ANTI-CRASHEO ACELERACIÓN GPU */
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
+            background-attachment: scroll;
+        }
+
+        body.animated-background {
+            background-image: url('assets/waddledeebackground.webp');
         }
 
         /* PANEL PRINCIPAL */
@@ -52,8 +53,8 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            max-width: 440px;
-            width: 90%;
+            max-width: 500px;
+            width: min(90%, 500px);
             border: 2px solid var(--acento);
             backdrop-filter: blur(8px);
         }
@@ -72,7 +73,7 @@
         .btn-action {
             font-family: 'WaddleFont', sans-serif;
             background-color: var(--acento);
-            color: var(--texto-claro);
+            color: #1d2b1c;
             border: none;
             padding: 10px 24px;
             font-size: 1.3rem;
@@ -84,11 +85,15 @@
         }
         .btn-action:hover { transform: scale(1.05); }
         .btn-action:active { transform: scale(0.95); }
+        .btn-action:focus-visible, .color-box:focus-visible {
+            outline: 3px solid var(--texto-claro);
+            outline-offset: 3px;
+        }
 
         /* --- PALETA DE COLORES INTERACTIVA --- */
         .palette-container {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
             gap: 10px;
             margin: 25px 0 15px 0;
             background: rgba(0, 0, 0, 0.2);
@@ -97,10 +102,12 @@
         }
 
         .color-box {
-            flex: 1;
-            height: 55px;
+            min-width: 44px;
+            min-height: 44px;
             border-radius: 8px;
             cursor: pointer;
+            padding: 0;
+            background-image: none;
             position: relative;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(255,255,255,0.1);
@@ -125,15 +132,16 @@
             opacity: 0;
             transition: opacity 0.2s;
             pointer-events: none;
-            color: #fff;
+            color: #1d2b1c;
             font-family: sans-serif;
         }
         .color-box:hover::after { opacity: 1; }
+        .color-box:focus-visible::after { opacity: 1; }
 
         /* --- MENSAJE FLOTANTE DE COPIADO --- */
         #toast {
             position: fixed;
-            bottom: -50px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             background: #ff7a45;
@@ -142,96 +150,147 @@
             border-radius: 50px;
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: bottom 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
             z-index: 10000;
             font-size: 0.9rem;
+            max-width: calc(100vw - 32px);
+            text-align: center;
         }
 
-        /* PANTALLA DE STARTUP (DESBLOQUEO DE AUDIO) */
-        #startup-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #111;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
+        #toast.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+            }
+
+            .btn-action:hover, .btn-action:active, .color-box:hover {
+                transform: none;
+            }
+
+            body.animated-background {
+                background-image: url('assets/waddle_background.png');
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="startup-screen">
-        <button class="btn-action" onclick="iniciarProyecto()">START GAME</button>
-    </div>
-
-    <div id="toast">¡Color copiado al portapapeles! 🎨</div>
+    <div id="toast" role="status" aria-live="polite"></div>
 
     <div class="container">
         <h1>Waddle Dee & Kirby</h1>
-        <p>Paleta, sonidos, tipografía caligráfica y escudo anti-crasheo listos. Haz clic en los colores para copiar sus códigos HEX de forma interactiva.</p>
+        <p>Explora la paleta y copia un color con un clic. La animación de fondo se carga solo si la activas.</p>
         
         <div class="palette-container">
-            <div class="color-box" style="background-color: #2e432c;" onclick="copiarColor('#2e432c')"></div>
-            <div class="color-box" style="background-color: #1d2b1c;" onclick="copiarColor('#1d2b1c')"></div>
-            <div class="color-box" style="background-color: #ff7a45;" onclick="copiarColor('#ff7a45')"></div>
-            <div class="color-box" style="background-color: #fffef0;" onclick="copiarColor('#fffef0')"></div>
-            <div class="color-box" style="background-color: #9bb88d;" onclick="copiarColor('#9bb88d')"></div>
+            <button type="button" class="color-box" style="background-color: #2e432c;" data-color="#2e432c" aria-label="Copiar verde oscuro, #2e432c"></button>
+            <button type="button" class="color-box" style="background-color: #1d2b1c;" data-color="#1d2b1c" aria-label="Copiar verde de panel, #1d2b1c"></button>
+            <button type="button" class="color-box" style="background-color: #ff7a45;" data-color="#ff7a45" aria-label="Copiar naranja, #ff7a45"></button>
+            <button type="button" class="color-box" style="background-color: #fffef0;" data-color="#fffef0" aria-label="Copiar crema, #fffef0"></button>
+            <button type="button" class="color-box" style="background-color: #9bb88d;" data-color="#9bb88d" aria-label="Copiar verde musgo, #9bb88d"></button>
         </div>
 
-        <button class="btn-action" onclick="reproducirClic()">Enviar Msg</button>
-        <button class="btn-action" onclick="toggleMusica()">Música On/Off</button>
+        <button type="button" class="btn-action" id="send-sound">Enviar mensaje</button>
+        <button type="button" class="btn-action" id="ring-sound">Reproducir tono</button>
+        <button type="button" class="btn-action" id="toggle-background" aria-pressed="false">Activar fondo animado (21 MB)</button>
     </div>
 
     <script>
-        /* --- RUTAS REALES DE AUDIO DESDE TU CARPETA ASSETS --- */
-        const audioStartup = new Audio('https://githubusercontent.com');
-        const audioClic = new Audio('https://githubusercontent.com');
-        const audioFondo = new Audio('https://githubusercontent.com');
-        
-        audioFondo.loop = true;
-        audioFondo.volume = 0.4;
+        /* --- RUTAS DE AUDIO DESDE LA CARPETA ASSETS --- */
+        const audioClic = new Audio('assets/waddle_send.wav');
+        const audioTono = new Audio('assets/waddle_ringtone.mp3');
+        audioClic.preload = 'none';
+        audioTono.preload = 'none';
+        audioTono.volume = 0.4;
 
-        function iniciarProyecto() {
-            // El navegador necesita un clic del usuario para permitir reproducir audios
-            audioStartup.play().catch(e => console.log("Audio diferido:", e));
-            document.getElementById('startup-screen').style.opacity = 0;
-            setTimeout(() => {
-                document.getElementById('startup-screen').style.display = 'none';
-                audioFondo.play().catch(e => console.log("Música de fondo en espera:", e));
-            }, 500);
+        const toast = document.getElementById('toast');
+        let toastTimer;
+
+        function mostrarAviso(mensaje) {
+            toast.textContent = mensaje;
+            toast.classList.add('visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('visible'), 2500);
         }
 
-        function copiarColor(hex) {
-            navigator.clipboard.writeText(hex).then(() => {
-                const toast = document.getElementById('toast');
-                toast.innerText = `¡Copiado: ${hex}! 🎨`;
-                toast.style.bottom = '30px'; 
-                
-                reproducirClic();
+        function copiarColorFallback(hex) {
+            const input = document.createElement('textarea');
+            input.value = hex;
+            input.setAttribute('readonly', '');
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            let copied;
+            try {
+                input.select();
+                copied = document.execCommand('copy');
+            } finally {
+                input.remove();
+            }
+            if (!copied) throw new Error('El navegador no permitió copiar al portapapeles.');
+        }
 
-                setTimeout(() => {
-                    toast.style.bottom = '-50px'; 
-                }, 2000);
-            }).catch(err => {
-                console.error('Error al copiar color: ', err);
+        async function copiarColor(hex) {
+            try {
+                if (navigator.clipboard?.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(hex);
+                    } catch {
+                        copiarColorFallback(hex);
+                    }
+                } else {
+                    copiarColorFallback(hex);
+                }
+                mostrarAviso(`¡Copiado: ${hex}! 🎨`);
+                reproducirSonido(audioClic);
+            } catch (error) {
+                console.error('No se pudo copiar el color:', error);
+                mostrarAviso(`No se pudo copiar. Código: ${hex}`);
+            }
+        }
+
+        function reproducirSonido(audio) {
+            audio.currentTime = 0;
+            audio.play().catch(error => {
+                console.error('No se pudo reproducir el sonido:', error);
+                mostrarAviso('No se pudo reproducir el sonido.');
             });
         }
 
-        function reproducirClic() {
-            audioClic.currentTime = 0; 
-            audioClic.play().catch(e => console.log("Interacción requerida:", e));
-        }
+        document.querySelectorAll('.color-box').forEach(button => {
+            button.addEventListener('click', () => copiarColor(button.dataset.color));
+        });
+        document.getElementById('send-sound').addEventListener('click', () => reproducirSonido(audioClic));
+        document.getElementById('ring-sound').addEventListener('click', () => reproducirSonido(audioTono));
 
-        function toggleMusica() {
-            if (audioFondo.paused) {
-                audioFondo.play().catch(e => console.log("Error al activar música:", e));
-            } else {
-                audioFondo.pause();
-            }
+        const backgroundButton = document.getElementById('toggle-background');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reducedMotion.matches) {
+            backgroundButton.disabled = true;
+            backgroundButton.textContent = 'Animación desactivada por preferencia del sistema';
         }
+        reducedMotion.addEventListener('change', event => {
+            backgroundButton.disabled = event.matches;
+            if (event.matches) {
+                document.body.classList.remove('animated-background');
+                backgroundButton.setAttribute('aria-pressed', 'false');
+                backgroundButton.textContent = 'Animación desactivada por preferencia del sistema';
+            } else {
+                backgroundButton.textContent = 'Activar fondo animado (21 MB)';
+            }
+        });
+        backgroundButton.addEventListener('click', () => {
+            const enabled = document.body.classList.toggle('animated-background');
+            backgroundButton.setAttribute('aria-pressed', String(enabled));
+            backgroundButton.textContent = enabled
+                ? 'Desactivar fondo animado'
+                : 'Activar fondo animado (21 MB)';
+        });
     </script>
 </body>
 </html>

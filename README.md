@@ -1,18 +1,26 @@
 # ☂ Tazendo64-Themes-for-Aliucord-By-tazendouwu64
 
-> An advanced cross-platform theme inspired by Parasol Waddle Dee with an animated background, custom sound effects, calligraphic typography, and a high-performance anti-crash system.
-
-[![Supported Platforms](https://shields.io)](https://github.com)
-[![Open Issues](https://shields.io)](https://github.com/issues)
+> A cross-platform theme inspired by Parasol Waddle Dee, with a custom background, sound effects, and calligraphic typography.
 
 ---
 
 ## ✨Special Features
 
-* **🌊 Fluid Motion Background:** Ultra-lightweight WebP file (`waddledeebackground.webp`) that simulates water movement and Kirby's reflection without overloading your device's RAM.
-* **🎵 Integrated Interactive Audio:** Sound effects from the Kirby universe assigned to key actions (sending/receiving messages, calls, and startup sounds).
+* **🌊 Custom Backgrounds:** A lightweight static preview background and an optional animated WebP for the themes.
+* **🎵 Interactive Audio:** Sound effects for sending messages, calls, and ringtone previews.
 * **🎨 Curated Color Palette:** A harmonious combination faithfully based on the tones of the original illustration.
-* **🛡️ Anti-Crash System:** Styles optimized using hardware acceleration (GPU) and asynchronous audio buffers to prevent freezes on any platform.
+* **♿ Accessible Preview:** Keyboard-operable color swatches, visible focus states, and support for reduced-motion preferences.
+
+The animated background is about 21 MB. The website preview loads a smaller static image first and only loads the animation when you enable it.
+
+## 🧰 Build and ZIP package
+
+Run `python3 build.py` to validate the Android theme JSON and local web assets, then create:
+
+* `build/site/` — the ready-to-publish website.
+* `build/waddledee-theme-suite.zip` — the website, themes, assets, license, and README.
+
+The GitHub Actions workflow runs the same build before deploying Pages and makes the ZIP available as a workflow artifact.
 
 ## 🎨 Official Color Palette
 
@@ -28,10 +36,10 @@
 
 ### 📱 On Aliucord (Android)
 1. Install the **Themer** plugin and the **CustomSounds** plugin from the official Aliucord server.
-2. Download the file [`tema-waddledee.json`](./themes/android/tema-waddledee.json) from this repository and move it to the `Aliucord/themes/` folder on your device's storage.
+2. Download the file [`theme-waddledee.json`](./themes/android/theme-waddledee.json) from this repository and move it to the `Aliucord/themes/` folder on your device's storage.
 3. Go to Aliucord Settings > Plugins > Themer, activate the theme, and restart the application.
 4. Open the CustomSounds settings and add the URLs of the audio files located in the `/assets` folder:
-   * **Send message:** `waddle_send.mp3`
+   * **Send message:** `waddle_send.wav`
    * **Receive message:** `waddle_receive.mp3`
    * **Call start:** `waddle_call_start.mp3`
 
@@ -46,11 +54,14 @@
 ```text
 Tazendo64-Themes-for-Aliucord-By-tazendouwu64/
 ├── .gitattributes # Prevents corruption of audio and fonts
-├── assets/ # WebP animation, .ttf font, and audio tracks
+├── assets/ # WebP background, .ttf font, and audio tracks
+│ ├── 167568d5ab41d1eca3daa416c9e7df6d.jpg
+│ ├── waddle_background.png
 │ ├── waddle_font.ttf
 │ ├── waddledeebackground.webp
-│ ├── waddle_send.mp3
+│ ├── waddle_send.wav
 │ ├── waddle_receive.mp3
+│ ├── waddle_ringtone.mp3
 │ ├── waddle_call_start.mp3
 │ └── waddle_ringtone.mp3
 ├── index.html # Preview webpage with interactive sound
@@ -65,13 +76,13 @@ Tazendo64-Themes-for-Aliucord-By-tazendouwu64/
 
 ---
 
-_Created with 🧡 by [Tazendo64](https://github.com). If you have optimization ideas for the anti-crash system, feel free to open an Issue or Pull Request!_
+_Created with 🧡 by [Tazendo64](https://github.com/Tazendo64). For suggestions, [open an issue](https://github.com/Tazendo64/Tazendo64-Themes-for-Aliucord-By-tazendouwu64/issues)._
  
 ## 🔌 Recommended Community Plugins
 
 To experience the full potential of this theme suite, we highly recommend installing the following plugins from the official Aliucord server:
 
-* **Themer:** Required to inject and parse your custom `tema-waddledee.json` color mapping.
-* **CustomSounds:** Essential for binding your `.mp3` assets to system alerts (messages, calls, startup).
+* **Themer:** Required to inject and parse your custom `theme-waddledee.json` color mapping.
+* **CustomSounds:** Essential for binding your audio assets to system alerts (messages, calls, startup).
 * **FontAndFont:** Used to apply the custom calligraphic typography `waddle_font.ttf` across the entire application interface.
 * **BiggerUserPopouts:** Enhances the frosted glass effect preview on user profiles and cards.

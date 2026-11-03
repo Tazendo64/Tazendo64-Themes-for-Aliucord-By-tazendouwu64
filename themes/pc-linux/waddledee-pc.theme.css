@@ -3,16 +3,20 @@
  * @author Tazendo64
  * @version 1.2.0
  * @description An advanced theme inspired by Parasol Waddle Dee with frosted transparencies and animated background.
- * @source https://github.com
+ * @source https://github.com/Tazendo64/Tazendo64-Themes-for-Aliucord-By-tazendouwu64
  */
 
 /* --- FONDO ANIMADO Y TIPOGRAFÍA --- */
-@import url('https://googleapis.com');
+@font-face {
+    font-family: 'WaddleFont';
+    src: url('../../assets/waddle_font.ttf') format('truetype');
+    font-display: swap;
+}
 
 :root {
     /* Fuentes */
-    --font-primary: 'Plus Jakarta Sans', sans-serif;
-    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-primary: 'WaddleFont', sans-serif;
+    --font-display: 'WaddleFont', sans-serif;
 
     /* Paleta Oficial de Colores (Tazendo64) */
     --waddle-bg-main: #2e432c;       /* Verde Hoja de Loto Oscuro */
@@ -22,7 +26,7 @@
     --waddle-text-muted: #9bb88d;    /* Verde Musgo Suave */
 
     /* Inyección de Fondo Animado Real */
-    --theme-background-image: url('https://githubusercontent.com');
+    --theme-background-image: url('../../assets/waddledeebackground.webp');
 }
 
 /* --- ASIGNACIÓN DE VARIABLES DE DISCORD --- */
@@ -54,6 +58,12 @@
 /* --- RENDERIZADO DEL FONDO (Hardware Accelerated) --- */
 body {
     background: var(--theme-background-image) center/cover no-repeat fixed !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --theme-background-image: url('../../assets/waddle_background.png');
+    }
 }
 
 /* Capa de desenfoque de fondo y suavizado para evitar caídas de FPS */
