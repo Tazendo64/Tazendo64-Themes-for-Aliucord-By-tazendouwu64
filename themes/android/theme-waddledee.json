@@ -1,25 +1,52 @@
 {
-  "manifest": {
-    "name": "Waddle Dee Advanced Pond",
-    "author": "Tazendo64",
-    "version": "1.2.0"
-  },
-  "background": {
-    "url": "https://raw.githubusercontent.com/Tazendo64/Tazendo64-Themes-for-Aliucord-By-tazendouwu64/waddle_dee/assets/waddledeebackground.webp",
-    "overlay_alpha": 0,
-    "blur_radius": 0
-  },
-  "simple_colors": {
-    "background": 0,
-    "background_secondary": 0
-  },
-  "colors": {
-    "brand_new_360": -34235,
-    "brand_new_500": -34235,
-    "primary_dark_800": 536870912,
-    "text_normal": -272,
-    "text_muted": -6571891,
-    "header_primary": -272,
-    "header_secondary": -6571891
-  }
+    "manifest": {
+        "name": "Waddle Dee Advanced Pond",
+        "author": "Tazendo64",
+        "version": "1.2.1"
+    },
+    "background": {
+        "url": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/1000717963-d5cb93a9.webp",
+        "blur_radius": 3,
+        "overlay_alpha": 0
+    },
+    "simple_colors": {
+        "background": 0,
+        "background_secondary": 0,
+        "statusbar": 387787548,
+        "active_channel": 220801839,
+        "input_background": 404564764,
+        "blocked_bg": 1285273741,
+        "accent": -34235,
+        "mention_highlight": -272
+    },
+    "colors": {
+        "brand_new_360": -34235,
+        "brand_new_500": -34235,
+        "primary_dark_800": 0,
+        "text_normal": -272,
+        "text_muted": -6571891,
+        "header_primary": -272,
+        "header_secondary": -6571891
+    },
+    "fonts": {
+        "*": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_font-59e14fb6.ttf"
+    },
+    "raws": {
+        "call_calling": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_call_start-735f45c7.mp3",
+        "call_ringing": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_ringtone-2d5b91a3.mp3",
+        "deafen": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3",
+        "mute": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3",
+        "undeafen": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "unmute": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "reconnect": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "stream_ended": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3",
+        "stream_started": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "stream_user_joined": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "stream_user_left": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3",
+        "user_join": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_send-66cfff79.wav",
+        "user_leave": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3",
+        "user_moved": "file:\/\/\/storage\/emulated\/0\/Aliucord\/themes\/files\/waddle_receive-4f8aa56b.mp3"
+    },
+    "drawable_tints": {},
+    "icons": {}
 }
