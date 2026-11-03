@@ -43,6 +43,8 @@ The GitHub Actions workflow runs the same build before deploying Pages and makes
    * **Receive message:** `waddle_receive.mp3`
    * **Call start:** `waddle_call_start.mp3`
 
+##📑 Note: also you can use the plugin Themes if you want.
+
 ### 💻 On PC and Linux (Vencord / BetterDiscord)
 1. Open your custom Discord client on your computer.
 2. Go to the **Custom Themes (Custom CSS)** section in your settings.
