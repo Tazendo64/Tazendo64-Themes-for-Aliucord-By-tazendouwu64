@@ -46,7 +46,7 @@ The GitHub Actions workflow runs the same build before deploying Pages and makes
 ### 💻 On PC and Linux (Vencord / BetterDiscord)
 1. Open your custom Discord client on your computer.
 2. Go to the **Custom Themes (Custom CSS)** section in your settings.
-3. Copy the code from [`waddledee-pc.theme.css`](./themes/pc-linux/waddledee-pc.theme.css) or directly link to the file and import it.
+3. Import [`waddledee-pc.theme.css`](./themes/pc-linux/waddledee-pc.theme.css) as a theme file. Do not paste its contents into a standalone CSS editor: its font and background use relative paths to the repository's `assets/` folder. If installing it locally, keep the file at `themes/pc-linux/waddledee-pc.theme.css` and preserve the `assets/` folder at the repository root.
 4. Enjoy the animated background and frosted transparency!
 
 ## 📂 Repository Structure
