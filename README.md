@@ -3,9 +3,7 @@
 > An advanced cross-platform theme inspired by Parasol Waddle Dee with an animated background, custom sound effects, calligraphic typography, and a high-performance anti-crash system.
 
 [![Supported Platforms](https://shields.io)](https://github.com)
-
 [![Open Issues](https://shields.io)](https://github.com/issues)
-
 
 ---
 
