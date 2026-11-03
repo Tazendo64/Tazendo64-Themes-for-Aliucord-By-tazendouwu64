@@ -17,7 +17,7 @@
             --bg-principal: #2e432c;      /* Verde hoja de loto oscuro */
             --bg-paneles: rgba(29, 43, 28, 0.85); /* Verde translúcido esmerilado */
             --acento: #ff7a45;          /* Naranja Waddle Dee */
-            --texto-claro: #fffef0;     /* Cream sombrilla */
+            --texto-claro: #fffef0;     /* Crema sombrilla */
             --texto-muted: #9bb88d;     /* Verde claro apagado */
         }
 
@@ -147,7 +147,7 @@
             font-size: 0.9rem;
         }
 
-        /* PANTALLA DE STARTUP */
+        /* PANTALLA DE STARTUP (DESBLOQUEO DE AUDIO) */
         #startup-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -186,7 +186,7 @@
     </div>
 
     <script>
-        /* --- RUTAS REALES DE AUDIO --- */
+        /* --- RUTAS REALES DE AUDIO DESDE TU CARPETA ASSETS --- */
         const audioStartup = new Audio('https://githubusercontent.com');
         const audioClic = new Audio('https://githubusercontent.com');
         const audioFondo = new Audio('https://githubusercontent.com');
@@ -195,11 +195,12 @@
         audioFondo.volume = 0.4;
 
         function iniciarProyecto() {
-            audioStartup.play().catch(e => console.log("Audio de inicio diferido:", e));
+            // El navegador necesita un clic del usuario para permitir reproducir audios
+            audioStartup.play().catch(e => console.log("Audio diferido:", e));
             document.getElementById('startup-screen').style.opacity = 0;
             setTimeout(() => {
                 document.getElementById('startup-screen').style.display = 'none';
-                audioFondo.play().catch(e => console.log("Música de fondo diferida:", e));
+                audioFondo.play().catch(e => console.log("Música de fondo en espera:", e));
             }, 500);
         }
 
@@ -221,7 +222,7 @@
 
         function reproducirClic() {
             audioClic.currentTime = 0; 
-            audioClic.play().catch(e => console.log("Interacción requerida para audio de clic:", e));
+            audioClic.play().catch(e => console.log("Interacción requerida:", e));
         }
 
         function toggleMusica() {
